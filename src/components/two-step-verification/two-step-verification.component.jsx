@@ -2,11 +2,13 @@
 
 import React from 'react';
 import OtpInput from 'react-otp-input';
+import { ErrorMessage, Field, Formik } from 'formik';
 import useTwoStepVerification from './use-step-verification.hook';
 import { CustomButton } from '@/common/components/custom-button/custom-button.component';
+import { otpVerificationValidationSchema } from '@/common/validations/otp-verification-validation-schem';
 
-export default function ResetPassword() {
-  const { otp, handleChange } = useTwoStepVerification();
+export default function TwoStepVerification() {
+  const { loading, resendCode, handleSubmit } = useTwoStepVerification();
 
   return (
     <React.Fragment>
@@ -16,40 +18,70 @@ export default function ResetPassword() {
       <p className="text-base text-gray600 text-center">
         A verification code has been sent to email address
       </p>
-      <div className="mt-10 mb-5">
-        <p className="text-sm text-[#344054] font-medium">Secure code</p>
-        <OtpInput
-          value={otp}
-          numInputs={6}
-          //   inputType="number"
-          onChange={handleChange}
-          containerStyle={{ marginTop: '6px', gap: '5px' }}
-          renderInput={(props) => <input {...props} />}
-          separator={<span>-</span>}
-          inputStyle={{
-            width: '4rem',
-            height: '4rem',
-            fontWeight: 600,
-            color: '#364152',
-            fontSize: '48px',
-            fontSize: '3rem',
-            background: '#FCFCFD',
-            borderRadius: '0.375rem',
-            border: '1px solid #E3E8EF',
-            boxShadow: '0px 1px 2px 0px #1018280D'
-          }}
-        />
-        <div className="flex-between mt-[13px]">
-          <p className="text-xs text-[#4C4C4C]">
-            The verification code shall expire after 10 minutes.
-          </p>
-          <CustomButton
-            text="Resend Code"
-            className="text-base text-gray600 font-medium"
-          />
-        </div>
-      </div>
-      <CustomButton text="Verify Code" className="btn-primary w-full" />
+      <Formik
+        onSubmit={handleSubmit}
+        initialValues={{ otpCode: '' }}
+        validationSchema={otpVerificationValidationSchema}
+      >
+        {(formik) => {
+          return (
+            <form onSubmit={formik.handleSubmit} className="mt-10">
+              <p className="text-sm text-[#344054] font-medium">Secure code</p>
+              <Field name="otpCode">
+                {({ field }) => (
+                  <React.Fragment>
+                    <OtpInput
+                      numInputs={6}
+                      field={{ ...field }}
+                      //   inputType="number"
+                      separator={<span>-</span>}
+                      value={formik.values.otpCode}
+                      renderInput={(props) => <input {...props} />}
+                      containerStyle={{ marginTop: '6px', gap: '5px' }}
+                      onChange={(value) =>
+                        formik.setFieldValue('otpCode', value)
+                      }
+                      inputStyle={{
+                        width: '4rem',
+                        height: '4rem',
+                        fontWeight: 600,
+                        color: '#364152',
+                        fontSize: '48px',
+                        fontSize: '3rem',
+                        background: '#FCFCFD',
+                        borderRadius: '0.375rem',
+                        border: '1px solid #E3E8EF',
+                        boxShadow: '0px 1px 2px 0px #1018280D'
+                      }}
+                    />
+                    <ErrorMessage name={'otpCode'}>
+                      {(msg) => <p className="text-red-500 text-sm">{msg}</p>}
+                    </ErrorMessage>
+                  </React.Fragment>
+                )}
+              </Field>
+              <div className="flex-between mt-[13px] mb-5">
+                <p className="text-xs text-[#4C4C4C]">
+                  The verification code shall expire after 10 minutes.
+                </p>
+                <CustomButton
+                  type="button"
+                  text="Resend Code"
+                  onClick={resendCode}
+                  className="text-base text-gray600 font-medium"
+                />
+              </div>
+              <CustomButton
+                type="submit"
+                text="Verify Code"
+                disabled={loading}
+                isLoading={loading}
+                className="btn-primary w-full"
+              />
+            </form>
+          );
+        }}
+      </Formik>
     </React.Fragment>
   );
 }

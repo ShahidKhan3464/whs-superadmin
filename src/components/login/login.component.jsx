@@ -10,7 +10,7 @@ import { Checkbox } from '@/common/components/custom-checkbox/custom-checkbox.co
 import { CustomButton } from '@/common/components/custom-button/custom-button.component';
 
 export default function Login() {
-  const { initialValues } = useLogin();
+  const { loading, initialValues, handleSubmit } = useLogin();
 
   return (
     <React.Fragment>
@@ -22,6 +22,7 @@ export default function Login() {
       </p>
       <Formik
         validateOnMount={true}
+        onSubmit={handleSubmit}
         initialValues={initialValues}
         validationSchema={loginValidationSchema}
       >
@@ -69,6 +70,8 @@ export default function Login() {
               <CustomButton
                 text="Login"
                 type="submit"
+                disabled={loading}
+                isLoading={loading}
                 className="btn-primary"
               />
             </form>

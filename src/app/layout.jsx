@@ -1,5 +1,7 @@
 import './globals.css';
+import { Toaster } from 'react-hot-toast';
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
+import { AppProvider } from '@/common/context/global-context';
 
 const inter = Inter({ subsets: ['latin'] });
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'] });
@@ -12,7 +14,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${plusJakartaSans.className}`}>{children}</body>
+      <body className={`${plusJakartaSans.className}`}>
+        <AppProvider>
+          {children}
+          <Toaster />
+        </AppProvider>
+      </body>
     </html>
   );
 }

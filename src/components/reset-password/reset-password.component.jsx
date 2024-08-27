@@ -9,7 +9,7 @@ import { CustomButton } from '@/common/components/custom-button/custom-button.co
 import { resetPasswordValidationSchema } from '@/common/validations/reset-password-validation-schema';
 
 export default function ResetPassword() {
-  const { initialValues } = useResetPassword();
+  const { loading, initialValues, handleSubmit } = useResetPassword();
 
   return (
     <React.Fragment>
@@ -21,6 +21,7 @@ export default function ResetPassword() {
       </p>
       <Formik
         validateOnMount={true}
+        onSubmit={handleSubmit}
         initialValues={initialValues}
         validationSchema={resetPasswordValidationSchema}
       >
@@ -33,19 +34,21 @@ export default function ResetPassword() {
               <TextInput
                 type="password"
                 formik={formik}
-                name="newPassword"
+                name="new_password"
                 label="New Password"
                 placeholder="Enter New Password"
               />
               <TextInput
                 type="password"
                 formik={formik}
-                name="confirmPassword"
+                name="confirm_password"
                 label="Confirm New  Password"
                 placeholder="Re Enter New Password"
               />
               <CustomButton
                 type="submit"
+                disabled={loading}
+                isLoading={loading}
                 text="Update Password"
                 className="btn-primary"
               />

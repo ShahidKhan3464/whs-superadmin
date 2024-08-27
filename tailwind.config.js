@@ -6,6 +6,12 @@ module.exports = {
     './src/common/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}'
   ],
+  screens: {
+    sm: '520px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px'
+  },
   theme: {
     extend: {
       colors: {

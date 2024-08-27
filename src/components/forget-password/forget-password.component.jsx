@@ -1,15 +1,15 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { Formik } from 'formik';
 import useForgetPassword from './use-forget-password.hook';
 import { TextInput } from '@/common/components/custom-input/custom-input.component';
 import { CustomButton } from '@/common/components/custom-button/custom-button.component';
 import { forgetPasswordValidationSchema } from '@/common/validations/forget-password-validation-schema';
-import Link from 'next/link';
 
 export default function ForgetPassword() {
-  const { initialValues } = useForgetPassword();
+  const { loading, handleSubmit } = useForgetPassword();
 
   return (
     <React.Fragment>
@@ -21,6 +21,7 @@ export default function ForgetPassword() {
       </p>
       <Formik
         validateOnMount={true}
+        onSubmit={handleSubmit}
         initialValues={{ email: '' }}
         validationSchema={forgetPasswordValidationSchema}
       >
@@ -39,6 +40,8 @@ export default function ForgetPassword() {
               />
               <CustomButton
                 type="submit"
+                disabled={loading}
+                isLoading={loading}
                 className="btn-primary"
                 text="Send Verification Link"
               />

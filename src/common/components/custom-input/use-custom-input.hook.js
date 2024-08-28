@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function useInputHook({ formik, name }) {
+function useInput({ formik, name }) {
   const [showPassword, setShowPassword] = useState(false);
 
   const error = formik.errors[name];
@@ -15,4 +15,4 @@ function useInputHook({ formik, name }) {
   };
 }
 
-export default useInputHook;
+export default useInput;

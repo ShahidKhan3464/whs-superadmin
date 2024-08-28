@@ -3,7 +3,7 @@ import makeRequest from '@/common/api/axios.config';
 import { API_ENDPOINTS } from '@/common/api/endpoints';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { HTTP } from '@/common/constants/http-methods.constant';
-import { setUserAndToken } from '@/common/utils/set-user-and-token';
+import { setUserAndToken } from '@/common/utils/user-and-token.utils';
 
 function useTwoStepVerification() {
   const router = useRouter();

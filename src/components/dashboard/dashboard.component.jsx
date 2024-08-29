@@ -5,22 +5,15 @@ import CustomTable from '@/common/components/custom-table/custom-table.component
 import { CustomButton } from '@/common/components/custom-button/custom-button.component';
 
 export default function Dashboard() {
-  const {
-    data,
-    payload,
-    columns,
-    cardsData,
-    setPayload,
-    totalRecords,
-    renderCellContent
-  } = useDashboard();
+  const { data, loading, columns, cardsData, totalRecords, renderCellContent } =
+    useDashboard();
 
   return (
     <div>
       <div className="flex-between gap-6">
         {cardsData.map((card) => (
           <div
-            key={card.counter}
+            key={card.title}
             className="px-6 py-4 w-full rounded-xl bg-white border border-solid border-gray200"
           >
             <h3 className="text-2xl text-blue600 font-semibold mb-6">
@@ -44,10 +37,8 @@ export default function Dashboard() {
         </div>
         <CustomTable
           data={data}
-          payload={payload}
           columns={columns}
-          isLoading={false}
-          setPayload={setPayload}
+          isLoading={loading}
           totalRecords={totalRecords}
           renderCellContent={renderCellContent}
         />

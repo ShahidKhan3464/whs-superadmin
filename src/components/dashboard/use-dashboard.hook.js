@@ -1,45 +1,26 @@
 import Image from 'next/image';
-import { useState } from 'react';
 import { Icons } from '@/common/assets';
+import { useRouter } from 'next/navigation';
+import useFetch from '@/common/hooks/use-fetch.hook';
+import { API_ENDPOINTS } from '@/common/api/endpoints';
 import { capitalizeFirstLetter } from '@/common/utils/string.utils';
-import { payloadData } from '@/common/constants/payload-data.constant';
 
 function useDashboard() {
-  const [payload, setPayload] = useState(payloadData);
-
-  const data = [
-    {
-      name: 'name',
-      email: 'youremail@gmail.com',
-      company: 'company Name',
-      status: 'active'
-    },
-    {
-      name: 'name',
-      email: 'youremail@gmail.com',
-      company: 'company Name',
-      status: 'Inactive'
-    },
-    {
-      name: 'name',
-      email: 'youremail@gmail.com',
-      company: 'company Name',
-      status: 'active'
-    }
-  ];
+  const router = useRouter();
+  const { data, loading } = useFetch(API_ENDPOINTS.GET_DASHBOARD_DATA);
 
   const cardsData = [
     {
-      title: 'To Admins',
-      counter: 77
+      title: 'Total Admins',
+      counter: data?.data?.totalCompanies ?? ''
     },
     {
       title: 'Active Admins',
-      counter: 50
+      counter: data?.data?.activeCompanies ?? ''
     },
     {
       title: 'Inactive Admins',
-      counter: 27
+      counter: data?.data?.inactiveCompanies ?? ''
     }
   ];
 
@@ -47,13 +28,16 @@ function useDashboard() {
     {
       label: 'Admin Name',
       accessor: 'name',
-      render: (item) => capitalizeFirstLetter(item.name)
+      render: (item) => {
+        const fullName = `${item.first_name} ${item.last_name}`;
+        return capitalizeFirstLetter(fullName);
+      }
     },
     { label: 'Admin Email', accessor: 'email' },
     {
       label: 'Company',
       accessor: 'company',
-      render: (item) => capitalizeFirstLetter(item.company)
+      render: (item) => capitalizeFirstLetter(item.email)
     },
     {
       label: 'Admin Status',
@@ -61,20 +45,25 @@ function useDashboard() {
       render: (item) => (
         <span
           className={`px-2.5 py-[3px] rounded-2xl text-sm font-medium ${
-            item.status.toLowerCase() === 'active'
+            item.status
               ? 'text-[#027A48] bg-[#ECFDF3]'
               : 'text-[#B42318] bg-[#FEF3F2]'
           }`}
         >
-          {capitalizeFirstLetter(item.status)}
+          {item.status ? 'Active' : 'Inactive'}
         </span>
       )
     },
     {
       label: 'Action',
       accessor: 'action',
-      render: () => (
-        <Image src={Icons.eye} alt="eye" className="cursor-pointer" />
+      render: (item) => (
+        <Image
+          alt="eye"
+          src={Icons.eye}
+          className="cursor-pointer"
+          onClick={() => router.push(`/users/${item._id}`)}
+        />
       )
     }
   ];
@@ -85,13 +74,12 @@ function useDashboard() {
   };
 
   return {
-    data,
-    payload,
+    loading,
     columns,
     cardsData,
-    setPayload,
     renderCellContent,
-    totalRecords: data.length
+    data: data?.data?.companies,
+    totalRecords: data?.data?.companies?.length
   };
 }
 

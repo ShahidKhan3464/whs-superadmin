@@ -4,11 +4,11 @@ import { CustomLoader } from '../custom-loader/custom-loader.component';
 const CustomTable = ({
   data,
   columns,
-  payload,
   isLoading,
-  setPayload,
   totalRecords,
-  renderCellContent
+  payload = null,
+  renderCellContent,
+  setPayload = () => null
 }) => {
   const noResultsFound = !totalRecords;
 

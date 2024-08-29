@@ -5,7 +5,6 @@ import Sidebar from '@/common/layout/sidebar/sidebar.component';
 export default function DashboardLayout({ children }) {
   return (
     <React.Fragment>
-      <Header />
       <main className="grid grid-cols-[246px,1fr]">
         <div className="h-screen">
           <Sidebar />

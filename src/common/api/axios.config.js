@@ -1,5 +1,7 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { HTTP } from '../constants/http-methods.constant';
+import { getUserAndToken } from '../utils/user-and-token.utils';
 
 const BASE_URL =
   process.env.API_BASE_URL || 'https://dev-api.healthandsafetydashboard.com';
@@ -12,8 +14,8 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('authToken');
+  async (config) => {
+    const { token } = await getUserAndToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -44,7 +46,9 @@ const makeRequest = async (method, endpoint, payload = null, params = null) => {
     };
 
     const response = await apiClient(config);
-    toast.success(response?.data?.message || 'Success');
+    if (method !== HTTP.GET) {
+      toast.success(response.data.message || 'Success');
+    }
     return response;
   } catch (error) {
     let errorMessage =

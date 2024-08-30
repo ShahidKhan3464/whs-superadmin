@@ -13,17 +13,19 @@ export default function UserDetails() {
     <div className="pt-6 px-6 h-full bg-white rounded-xl">
       <div className="flex item-center gap-1.5">
         <Image
+          width={24}
+          height={32}
           alt="arrow-left"
           src={Icons.arrowLeft}
           className="cursor-pointer"
           onClick={() => router.back()}
         />
-        <h2 className="text-2xl font-semibold text-[#344054]">Details</h2>
+        <h2 className="text-2xl font-semibold text-lightBlack">Details</h2>
       </div>
 
       {/* Company Admin Details */}
       <div className="py-10">
-        <h2 className="text-lg text-[#344054] font-semibold mb-4">
+        <h2 className="text-lg text-lightBlack font-semibold mb-4">
           Company Admin Details
         </h2>
         <div className="flex-between">
@@ -34,8 +36,10 @@ export default function UserDetails() {
               className="w-[94px] h-[94px] rounded-full object-cover"
             />
             <div className="ml-4">
-              <h3 className="text-xl font-semibold text-[#344054]">John Doe</h3>
-              <p className="text-base font-medium text-[#344054]">
+              <h3 className="text-xl font-semibold text-lightBlack">
+                John Doe
+              </h3>
+              <p className="text-base font-medium text-lightBlack">
                 Company Admin
               </p>
             </div>
@@ -45,9 +49,9 @@ export default function UserDetails() {
               </p>
             </div>
             <div className="ml-8 mt-6">
-              <p className="text-base text-[#344054] font-semibold">
+              <p className="text-base text-lightBlack font-semibold">
                 Status{' '}
-                <span className="ml-2 py-1 px-2.5 text-sm text-[#027A48] bg-[#ECFDF3] font-medium rounded-2xl">
+                <span className="ml-2 py-1 px-2.5 text-sm text-green bg-lightGreen font-medium rounded-2xl">
                   Active
                 </span>
               </p>
@@ -57,7 +61,7 @@ export default function UserDetails() {
             <CustomButton
               text="Inactivate Admin"
               icon={<Image src={Icons.userX} alt="userX" />}
-              className="px-5 py-3 gap-2 flex-center rounded-md text-base text-[#D81919] font-semibold border border-solid border-[#D81919]"
+              className="px-5 py-3 gap-2 flex-center rounded-md text-base text-danger font-semibold border border-solid border-danger"
             />
           </div>
         </div>
@@ -65,35 +69,37 @@ export default function UserDetails() {
 
       {/* Company Details */}
       <div className="mt-10">
-        <h2 className="text-lg text-[#344054] font-semibold mb-4">
+        <h2 className="text-lg text-lightBlack font-semibold mb-4">
           Company Details
         </h2>
         <div className="grid grid-cols-3 gap-6">
           <div className="flex flex-col gap-[18px]">
-            <p className="text-sm text-[#667085] font-semibold">Email</p>
-            <p className="text-base text-[#344054] font-medium">
+            <p className="text-sm text-darkGray font-semibold">Email</p>
+            <p className="text-base text-lightBlack font-medium">
               johndoe@mail.com
             </p>
           </div>
           <div className="flex flex-col gap-[18px]">
-            <p className="text-sm text-[#667085] font-semibold">Company</p>
-            <p className="text-base text-[#344054] font-medium">Company Name</p>
+            <p className="text-sm text-darkGray font-semibold">Company</p>
+            <p className="text-base text-lightBlack font-medium">
+              Company Name
+            </p>
           </div>
           <div className="flex flex-col gap-[18px]">
-            <p className="text-sm text-[#667085] font-semibold">Company Type</p>
-            <p className="text-base text-[#344054] font-medium">Type here</p>
+            <p className="text-sm text-darkGray font-semibold">Company Type</p>
+            <p className="text-base text-lightBlack font-medium">Type here</p>
           </div>
           <div className="flex flex-col gap-[18px]">
-            <p className="text-sm text-[#667085] font-semibold">
+            <p className="text-sm text-darkGray font-semibold">
               No of Employees
             </p>
-            <p className="text-base text-[#344054] font-medium">300</p>
+            <p className="text-base text-lightBlack font-medium">300</p>
           </div>
           <div className="flex flex-col gap-[18px]">
-            <p className="text-sm text-[#667085] font-semibold">
+            <p className="text-sm text-darkGray font-semibold">
               Company Address
             </p>
-            <p className="text-base text-[#344054] font-medium">
+            <p className="text-base text-lightBlack font-medium">
               Company Address Here
             </p>
           </div>

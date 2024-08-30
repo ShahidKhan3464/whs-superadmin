@@ -13,7 +13,10 @@ export const Checkbox = ({
 }) => {
   return (
     <React.Fragment>
-      <div className="flex gap-[6px] items-center" onClick={onClick}>
+      <div
+        onClick={onClick}
+        className="flex gap-[6px] items-center cursor-pointer"
+      >
         <Image
           width={16}
           height={16}

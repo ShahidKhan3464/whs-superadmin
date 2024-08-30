@@ -1,7 +1,9 @@
+import Cookies from 'js-cookie';
 import { Icons } from '@/common/assets';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 function useSidebar() {
+  const router = useRouter();
   const pathname = usePathname();
 
   const menuItems = [
@@ -32,11 +34,29 @@ function useSidebar() {
       text: 'Company Admins',
       activeIcon: Icons.usersWhite,
       isActive: pathname === '/users'
+    },
+    {
+      text: 'Setting',
+      path: '/setting',
+      icon: Icons.setting,
+      activeIcon: Icons.settingWhite,
+      isActive: pathname === '/setting'
+    },
+    {
+      text: 'Logout',
+      icon: Icons.logout
     }
   ];
 
+  const handleLogout = () => {
+    Cookies.remove('user');
+    Cookies.remove('auth-token');
+    router.push('/login');
+  };
+
   return {
-    menuItems
+    menuItems,
+    handleLogout
   };
 }
 

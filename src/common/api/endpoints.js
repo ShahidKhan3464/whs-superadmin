@@ -6,5 +6,9 @@ export const API_ENDPOINTS = {
   RESET_PASSWORD: '/api/admin/reset-password',
   FORGET_PASSWORD: '/api/admin/forgot-password',
 
-  GET_DASHBOARD_DATA: '/api/admin/dashboard'
+  GET_DASHBOARD_DATA: '/api/admin/dashboard',
+
+  // COMPANY ENDPOINTS
+  COMPANY_LISTING: '/api/admin/company-admins',
+  COMPANY_DETAILS: '/api/admin/company-details'
 };

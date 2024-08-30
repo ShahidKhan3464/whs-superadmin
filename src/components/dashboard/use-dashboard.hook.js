@@ -46,7 +46,7 @@ function useDashboard() {
         <span
           className={`px-2.5 py-[3px] rounded-2xl text-sm font-medium ${
             item.status
-              ? 'text-[#027A48] bg-[#ECFDF3]'
+              ? 'text-green bg-lightGreen'
               : 'text-[#B42318] bg-[#FEF3F2]'
           }`}
         >

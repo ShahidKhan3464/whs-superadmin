@@ -36,11 +36,19 @@ apiClient.interceptors.response.use(
   }
 );
 
-const makeRequest = async (method, endpoint, payload = null, params = null) => {
+const makeRequest = async (
+  method,
+  endpoint,
+  payload = null,
+  params = null,
+  id = null
+) => {
   try {
+    const url = id ? `${endpoint}/${id}` : endpoint;
+
     const config = {
       method,
-      url: endpoint,
+      url,
       data: payload,
       params
     };

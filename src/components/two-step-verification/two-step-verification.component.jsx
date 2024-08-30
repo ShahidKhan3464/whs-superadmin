@@ -26,7 +26,7 @@ export default function TwoStepVerification() {
         {(formik) => {
           return (
             <form onSubmit={formik.handleSubmit} className="mt-10">
-              <p className="text-sm text-[#344054] font-medium">Secure code</p>
+              <p className="text-sm text-lightBlack font-medium">Secure code</p>
               <Field name="otpCode">
                 {({ field }) => (
                   <React.Fragment>

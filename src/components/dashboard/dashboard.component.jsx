@@ -1,10 +1,12 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import useDashboard from './use-dashboard.hook';
 import CustomTable from '@/common/components/custom-table/custom-table.component';
 import { CustomButton } from '@/common/components/custom-button/custom-button.component';
 
 export default function Dashboard() {
+  const router = useRouter();
   const { data, loading, columns, cardsData, totalRecords, renderCellContent } =
     useDashboard();
 
@@ -33,12 +35,14 @@ export default function Dashboard() {
           <CustomButton
             text="View All Admins"
             className="btn-primary px-[18px]"
+            onClick={() => router.push('/users')}
           />
         </div>
         <CustomTable
           data={data}
           columns={columns}
           isLoading={loading}
+          showPagination={false}
           totalRecords={totalRecords}
           renderCellContent={renderCellContent}
         />

@@ -2,13 +2,13 @@ import React from 'react';
 
 export const CustomLoader = ({
   text = '',
+  className,
   width = '30',
   height = '30',
-  circleColor = '#ffffff',
-  className = 'flex-center'
+  circleColor = '#ffffff'
 }) => {
   return (
-    <div className={className}>
+    <div className={`flex-center ${className}`}>
       <svg
         width={width}
         height={height}

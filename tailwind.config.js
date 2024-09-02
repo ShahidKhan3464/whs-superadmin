@@ -21,11 +21,14 @@ module.exports = {
         blue600: '#0B8CBE',
         gray100: '#EEF2F6',
         gray200: '#E3E8EF',
+        gray300: '#CDD5DF',
         gray400: '#9AA4B2',
         gray500: '#697586',
         gray600: '#4B5565',
         gray700: '#364152',
+        chablis: '#FEF3F2',
         darkGray: '#667085',
+        fireBrick: '#B42318',
         lightGreen: '#ECFDF3',
         lightBlack: '#344054'
       }

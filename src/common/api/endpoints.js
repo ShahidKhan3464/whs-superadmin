@@ -10,5 +10,6 @@ export const API_ENDPOINTS = {
 
   // COMPANY ENDPOINTS
   COMPANY_LISTING: '/api/admin/company-admins',
+  COMPANY_STATUS: '/api/admin/company/status',
   COMPANY_DETAILS: '/api/admin/company-details'
 };

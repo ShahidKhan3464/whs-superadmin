@@ -4,7 +4,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 function useSidebar() {
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = usePathname().split('/')[1];
 
   const menuItems = [
     {
@@ -12,35 +12,35 @@ function useSidebar() {
       text: 'Dashboard',
       path: '/dashboard',
       activeIcon: Icons.homeWhite,
-      isActive: pathname === '/dashboard'
+      isActive: pathname === 'dashboard'
     },
     {
       text: 'Transactions',
       path: '/transactions',
       icon: Icons.transaction,
       activeIcon: Icons.transactionWhite,
-      isActive: pathname === '/transactions'
+      isActive: pathname === 'transactions'
     },
     {
       text: 'Subscriptions',
       path: '/subscriptions',
       icon: Icons.subscription,
       activeIcon: Icons.subscriptionWhite,
-      isActive: pathname === '/subscriptions'
+      isActive: pathname === 'subscriptions'
     },
     {
       path: '/users',
       icon: Icons.users,
       text: 'Company Admins',
       activeIcon: Icons.usersWhite,
-      isActive: pathname === '/users'
+      isActive: pathname === 'users' || pathname === 'users'
     },
     {
       text: 'Setting',
       path: '/setting',
       icon: Icons.setting,
       activeIcon: Icons.settingWhite,
-      isActive: pathname === '/setting'
+      isActive: pathname === 'setting'
     },
     {
       text: 'Logout',

@@ -37,7 +37,8 @@ function useDashboard() {
     {
       label: 'Company',
       accessor: 'company',
-      render: (item) => capitalizeFirstLetter(item.email)
+      render: (item) =>
+        capitalizeFirstLetter(item?.profile?.company_name ?? 'N/A')
     },
     {
       label: 'Admin Status',
@@ -47,7 +48,7 @@ function useDashboard() {
           className={`px-2.5 py-[3px] rounded-2xl text-sm font-medium ${
             item.status
               ? 'text-green bg-lightGreen'
-              : 'text-[#B42318] bg-[#FEF3F2]'
+              : 'text-fireBrick bg-chablis'
           }`}
         >
           {item.status ? 'Active' : 'Inactive'}

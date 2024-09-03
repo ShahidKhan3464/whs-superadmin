@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Formik } from 'formik';
 import useResetPassword from './use-reset-password.hook';
-import { TextInput } from '@/common/components/custom-input/custom-input.component';
+import { FormControl } from '@/common/utils/form-control.utils';
 import { CustomButton } from '@/common/components/custom-button/custom-button.component';
 import { resetPasswordValidationSchema } from '@/common/validations/reset-password-validation-schema';
 
@@ -31,14 +31,16 @@ export default function ResetPassword() {
               onSubmit={formik.handleSubmit}
               className="flex flex-col gap-5 mt-10"
             >
-              <TextInput
+              <FormControl
+                control="input"
                 type="password"
                 formik={formik}
                 name="new_password"
                 label="New Password"
                 placeholder="Enter New Password"
               />
-              <TextInput
+              <FormControl
+                control="input"
                 type="password"
                 formik={formik}
                 name="confirm_password"

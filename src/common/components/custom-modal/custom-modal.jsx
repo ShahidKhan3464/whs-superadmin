@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Icons } from '@/common/assets';
 import { CustomButton } from '../custom-button/custom-button.component';
 
-const CustomModal = ({
+export const CustomModal = ({
   title,
   isOpen,
   onClose,
@@ -20,7 +20,7 @@ const CustomModal = ({
     <React.Fragment>
       <div
         onClick={() => onClose && onClose()}
-        className="fixed inset-0 bg-black opacity-[70%]"
+        className="fixed inset-0 bg-black opacity-[70%] z-[2]"
       ></div>
       <div className="fixed flex-center inset-0 z-[100]">
         <div
@@ -68,5 +68,3 @@ const CustomModal = ({
     </React.Fragment>
   );
 };
-
-export default CustomModal;

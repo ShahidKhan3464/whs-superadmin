@@ -1,8 +1,8 @@
 import React from 'react';
 import { CustomLoader } from '../custom-loader/custom-loader.component';
-import CustomPagination from '../custom-pagination/custom-pagination.component';
+import { CustomPagination } from '../custom-pagination/custom-pagination.component';
 
-const CustomTable = ({
+export const CustomTable = ({
   data,
   columns,
   isLoading,
@@ -69,5 +69,3 @@ const CustomTable = ({
     </React.Fragment>
   );
 };
-
-export default CustomTable;

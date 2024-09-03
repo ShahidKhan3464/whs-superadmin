@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Icons } from '@/common/assets';
 import useUserDetails from './use-details.hook';
-import CustomModal from '@/common/components/custom-modal/custom-modal';
+import { CustomModal } from '@/common/components/custom-modal/custom-modal';
 import { CustomButton } from '@/common/components/custom-button/custom-button.component';
 import { CustomLoader } from '@/common/components/custom-loader/custom-loader.component';
 

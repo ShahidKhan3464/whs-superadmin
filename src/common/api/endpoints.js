@@ -11,5 +11,11 @@ export const API_ENDPOINTS = {
   // COMPANY ENDPOINTS
   COMPANY_LISTING: '/api/admin/company-admins',
   COMPANY_STATUS: '/api/admin/company/status',
-  COMPANY_DETAILS: '/api/admin/company-details'
+  COMPANY_DETAILS: '/api/admin/company-details',
+
+  // SUBSCRIPTIONS ENDPOINTS
+  SUBSCRIPTION_EDIT: '/api/admin/subscription-plan',
+  SUBSCRIPTION_DETAILS: '/api/admin/subscription-plan',
+  SUBSCRIPTION_LISTING: '/api/admin/subscription-plans',
+  SUBSCRIPTION_STATUS: '/api/admin/subscription-status'
 };

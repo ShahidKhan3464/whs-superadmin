@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Icons } from '@/common/assets';
 import useSearchField from './use-search-field.hook';
 
-export default function CustomSearchField({ handleSearchQueryChange }) {
+export const CustomSearchField = ({ handleSearchQueryChange }) => {
   const { inputRef, handleSearch } = useSearchField({
     handleSearchQueryChange
   });
@@ -22,4 +22,4 @@ export default function CustomSearchField({ handleSearchQueryChange }) {
       </div>
     </div>
   );
-}
+};

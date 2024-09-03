@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Formik } from 'formik';
 import useForgetPassword from './use-forget-password.hook';
-import { TextInput } from '@/common/components/custom-input/custom-input.component';
+import { FormControl } from '@/common/utils/form-control.utils';
 import { CustomButton } from '@/common/components/custom-button/custom-button.component';
 import { forgetPasswordValidationSchema } from '@/common/validations/forget-password-validation-schema';
 
@@ -31,10 +31,11 @@ export default function ForgetPassword() {
               onSubmit={formik.handleSubmit}
               className="flex flex-col gap-5 mt-10"
             >
-              <TextInput
-                name="email"
+              <FormControl
                 type="email"
+                name="email"
                 label="Email"
+                control="input"
                 formik={formik}
                 placeholder="Enter Email Address"
               />
@@ -45,7 +46,6 @@ export default function ForgetPassword() {
                 className="btn-primary"
                 text="Send Verification Link"
               />
-
               <div className="mt-5 flex-center gap-2 text-base font-medium">
                 <Link href={'/login'} className="text-gray600 cursor-pointer">
                   Back to Login

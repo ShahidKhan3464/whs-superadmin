@@ -4,9 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import { Formik } from 'formik';
 import useLogin from './use-login.hook';
-import { TextInput } from '@/common/components/custom-input/custom-input.component';
+import { FormControl } from '@/common/utils/form-control.utils';
 import { loginValidationSchema } from '@/common/validations/login-validation.schema';
-import { Checkbox } from '@/common/components/custom-checkbox/custom-checkbox.component';
 import { CustomButton } from '@/common/components/custom-button/custom-button.component';
 
 export default function Login() {
@@ -32,14 +31,16 @@ export default function Login() {
               onSubmit={formik.handleSubmit}
               className="flex flex-col gap-5 mt-10"
             >
-              <TextInput
-                name="email"
+              <FormControl
                 type="email"
+                name="email"
                 label="Email"
+                control="input"
                 formik={formik}
                 placeholder="Enter Email Address"
               />
-              <TextInput
+              <FormControl
+                control="input"
                 formik={formik}
                 name="password"
                 type="password"
@@ -47,9 +48,10 @@ export default function Login() {
                 placeholder="Enter Password"
               />
               <div className="flex-between">
-                <Checkbox
+                <FormControl
                   formik={formik}
                   name="rememberMe"
+                  control="checkbox"
                   label="Remember Me"
                   checked={formik.values.rememberMe}
                   className="text-base text-[#4C4C4C]"

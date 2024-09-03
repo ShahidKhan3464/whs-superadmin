@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import useDashboard from './use-dashboard.hook';
-import CustomTable from '@/common/components/custom-table/custom-table.component';
+import { CustomTable } from '@/common/components/custom-table/custom-table.component';
 import { CustomButton } from '@/common/components/custom-button/custom-button.component';
 
 export default function Dashboard() {

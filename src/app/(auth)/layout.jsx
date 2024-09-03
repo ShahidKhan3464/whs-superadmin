@@ -6,7 +6,7 @@ export default function AuthLayout({ children }) {
     <React.Fragment>
       <Header />
       <div className="flex-center min-h-[calc(100vh_-_96px)]">
-        <div className="p-10 w-full max-w-[492px] rounded-xl border border-solid border-[#E3E8EF]">
+        <div className="p-10 w-full max-w-[492px] rounded-xl border border-solid border-gray200">
           {children}
         </div>
       </div>

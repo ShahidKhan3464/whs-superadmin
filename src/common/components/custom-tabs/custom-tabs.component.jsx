@@ -1,6 +1,6 @@
 import useTab from './use-custom-tabs.hook';
 
-const CustomTabs = ({
+export const CustomTabs = ({
   tabs,
   activeTab,
   setActiveTab,
@@ -26,5 +26,3 @@ const CustomTabs = ({
     </div>
   );
 };
-
-export default CustomTabs;

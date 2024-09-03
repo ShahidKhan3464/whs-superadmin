@@ -3,17 +3,14 @@ import { Icons } from '@/common/assets';
 import { ErrorMessage, Field } from 'formik';
 import useInput from './use-custom-input.hook';
 
-export const TextInput = ({
+export const CustomInput = ({
   name,
   label,
   formik,
   type = 'text',
   disabled = false,
-  onClickDeleteLabel,
-  deletelabel = false,
-  highlightTouched = true,
-  className = 'w-full text-base text-[#182230] px-3 py-2.5 rounded-lg border-[0.66px] border-solid border-[#E3E8EF] bg-[#FCFCFD] ease-soft appearance-none outline-none transition-all focus:outline-none',
-  ...others
+  className = 'w-full text-base text-[#182230] px-3 py-2.5 rounded-lg border-[0.66px] border-solid border-gray200 bg-[#FCFCFD] ease-soft appearance-none outline-none transition-all focus:outline-none',
+  ...rest
 }) => {
   const { showPassword, setShowPassword, borderColor } = useInput({
     name,
@@ -22,13 +19,16 @@ export const TextInput = ({
 
   return (
     <div className="w-full">
-      <label className="text-gray700 text-sm font-medium">{label}</label>
+      <label htmlFor={name} className="text-gray700 text-sm font-medium">
+        {label}
+      </label>
       <div className="relative mt-1">
         <Field name={name}>
           {({ field }) => (
             <input
+              id={name}
+              {...rest}
               {...field}
-              {...others}
               autoComplete="off"
               disabled={disabled}
               type={showPassword ? 'text' : type}
@@ -50,14 +50,6 @@ export const TextInput = ({
             src={!showPassword ? Icons.eyeOn : Icons.eyeOff}
             className="absolute right-3 top-3 cursor-pointer"
           />
-        )}
-        {deletelabel && (
-          <div
-            onClick={onClickDeleteLabel}
-            className="absolute cursor-pointer right-1 bottom-[3rem] text-sm font-semibold leading-5 text-[#F97066]"
-          >
-            Delete
-          </div>
         )}
       </div>
 

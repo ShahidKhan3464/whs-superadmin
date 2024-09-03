@@ -6,7 +6,6 @@ import { HTTP } from '@/common/constants/http-methods.constant';
 
 function useLogin() {
   const router = useRouter();
-  // const { loading } = useGlobalContext();
   const [loading, setLoading] = useState(false);
   const initialValues = {
     email: '',

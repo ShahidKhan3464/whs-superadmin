@@ -1,5 +1,7 @@
 import eye from '@/common/assets/icons/eye.svg';
 import home from '@/common/assets/icons/home.svg';
+import edit from '@/common/assets/icons/edit.svg';
+import trash from '@/common/assets/icons/trash.svg';
 import users from '@/common/assets/icons/users.svg';
 import check from '@/common/assets/icons/check.svg';
 import userX from '@/common/assets/icons/user-x.svg';
@@ -17,6 +19,7 @@ import dashboard from '@/common/assets/icons/dashboard.svg';
 import userCheck from '@/common/assets/icons/user-check.svg';
 import arrowLeft from '@/common/assets/icons/arrow-left.svg';
 import homeWhite from '@/common/assets/icons/home-white.svg';
+import arrowDown from '@/common/assets/icons/arrow-down.svg';
 import whiteCheck from '@/common/assets/icons/white-check.svg';
 import usersWhite from '@/common/assets/icons/users-white.svg';
 import arrowRight from '@/common/assets/icons/arrow-right.svg';
@@ -30,6 +33,8 @@ import subscriptionWhite from '@/common/assets/icons/subscription-white.svg';
 export const Icons = {
   eye,
   home,
+  edit,
+  trash,
   eyeOn,
   users,
   check,
@@ -44,6 +49,7 @@ export const Icons = {
   setting,
   download,
   userCheck,
+  arrowDown,
   dashboard,
   arrowLeft,
   homeWhite,

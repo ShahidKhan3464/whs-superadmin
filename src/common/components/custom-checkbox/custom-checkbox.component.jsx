@@ -3,13 +3,13 @@ import Image from 'next/image';
 import { ErrorMessage } from 'formik';
 import { Icons } from '@/common/assets';
 
-export const Checkbox = ({
+export const CustomCheckbox = ({
   name,
   label,
-  formik,
   checked,
   onClick,
-  className
+  className,
+  ...rest
 }) => {
   return (
     <React.Fragment>

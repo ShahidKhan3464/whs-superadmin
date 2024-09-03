@@ -4,7 +4,7 @@ import { Icons } from '@/common/assets';
 import usePagination from './use-pagination.hook';
 import { CustomButton } from '../custom-button/custom-button.component';
 
-const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
+export const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
   const { handleClick } = usePagination({ currentPage, onPageChange });
 
   const renderPagination = () => {
@@ -98,5 +98,3 @@ const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
     </div>
   );
 };
-
-export default CustomPagination;

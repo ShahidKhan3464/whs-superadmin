@@ -4,8 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import { Icons } from '@/common/assets';
 import useSubscriptions from './use-subscriptions.hook';
-import CustomModal from '@/common/components/custom-modal/custom-modal';
-import CustomTabs from '@/common/components/custom-tabs/custom-tabs.component';
+import { CustomModal } from '@/common/components/custom-modal/custom-modal';
+import { CustomTabs } from '@/common/components/custom-tabs/custom-tabs.component';
 import { CustomButton } from '@/common/components/custom-button/custom-button.component';
 import { CustomLoader } from '@/common/components/custom-loader/custom-loader.component';
 
@@ -13,12 +13,15 @@ export default function Subscriptions() {
   const {
     open,
     plans,
+    router,
+    planObj,
+    loading,
     setOpen,
-    enabled,
     activeTab,
-    setEnabled,
+    setPlanObj,
     setActiveTab,
-    subscriptionTabs
+    subscriptionTabs,
+    handlePlanStatus
   } = useSubscriptions();
 
   return (
@@ -29,16 +32,13 @@ export default function Subscriptions() {
         actionBtnText="Yes"
         onClose={() => setOpen(!open)}
         className="w-full max-w-[486px]"
-        onSubmit={() => {
-          setOpen(!open);
-          setEnabled(!enabled);
-        }}
+        onSubmit={() => handlePlanStatus()}
       >
         <div className="flex flex-col items-center gap-6">
           <Image src={Icons.alertTriangle} alt="alert-triangle" />
           <p className="text-xl text-gray700 font-semibold">
-            Are You Sure You Want to {enabled ? 'Deactivate' : 'Activate'} this
-            Plan
+            Are You Sure You Want to{' '}
+            {planObj?.status ? 'Deactivate' : 'Activate'} this Plan
           </p>
         </div>
       </CustomModal>
@@ -57,13 +57,15 @@ export default function Subscriptions() {
         style={{ alignItems: 'normal' }}
         className="flex-center flex-wrap gap-6 mb-10"
       >
-        {false ? (
+        {loading ? (
           <CustomLoader circleColor="#697586" />
         ) : (
           plans?.map((plan) => (
             <div
               key={plan._id}
-              className="p-6 w-full bg-[#FCFCFD] rounded-[10px] border border-solid border-gray200 max-w-[521px]"
+              className={`p-6 w-full bg-[#FCFCFD] rounded-[10px] border border-solid border-gray200 max-w-[521px] ${
+                !plan.status ? 'opacity-50' : ''
+              }`}
             >
               <div className="flex-between border-b-gray300 border-b border-solid">
                 <div className="px-3.5 pb-8 flex flex-col gap-4">
@@ -72,32 +74,37 @@ export default function Subscriptions() {
                   </h3>
                   <div className="text-gray700">
                     <span className="text-5xl font-bold">
-                      {plan.price.split('.')[0]}.
+                      ${plan.price.split('.')[0]}.
                     </span>
                     <span className="text-3xl font-bold">
                       {plan.price.split('.')[1]}/
                     </span>
-                    <span className="text-xl font-normal">month</span>
+                    <span className="text-xl font-normal">
+                      {plan.duration_unit}
+                    </span>
                   </div>
                 </div>
                 <div
                   className={`gap-1 h-[30px] inline-flex items-center rounded-full transition-colors duration-500 ${
-                    enabled
+                    plan.status
                       ? 'bg-blue600'
                       : 'bg-gray100 flex-row-reverse border border-solid border-gray400'
                   }`}
                 >
                   <span
                     className={`text-xs font-semibold ${
-                      enabled ? 'text-white pl-1.5' : 'text-gray600 pr-1.5'
+                      plan.status ? 'text-white pl-1.5' : 'text-gray600 pr-1.5'
                     }`}
                   >
-                    {enabled ? 'Active' : 'Inactive'}
+                    {plan.status ? 'Active' : 'Inactive'}
                   </span>
                   <span
-                    onClick={() => setOpen(!open)}
+                    onClick={() => {
+                      setOpen(!open);
+                      setPlanObj({ id: plan._id, status: plan.status });
+                    }}
                     className={`w-[22px] h-[22px] cursor-pointer rounded-full ${
-                      enabled ? 'bg-white mr-1' : 'bg-gray500 ml-1'
+                      plan.status ? 'bg-white mr-1' : 'bg-gray500 ml-1'
                     }`}
                   ></span>
                 </div>
@@ -105,9 +112,9 @@ export default function Subscriptions() {
               <div className="flex flex-col justify-between h-[calc(100%_-_130px)]">
                 <div>
                   <ul className="space-y-2 py-6">
-                    {plan.features.map((feature) => (
+                    {plan?.features?.map((feature) => (
                       <li
-                        key={feature}
+                        key={feature._id}
                         className="flex items-center font-medium text-[#3F486A] pb-7"
                       >
                         <span className="w-5 h-5 flex-center bg-blue600 text-white rounded-[50%] mr-2">
@@ -118,7 +125,7 @@ export default function Subscriptions() {
                             src={Icons.whiteCheck}
                           />
                         </span>{' '}
-                        {feature}
+                        {feature.text}
                       </li>
                     ))}
                   </ul>
@@ -126,8 +133,11 @@ export default function Subscriptions() {
                 <div>
                   <CustomButton
                     text="Edit Plan"
+                    disabled={!plan.status}
                     className="btn-primary w-full"
-                    onClick={() => navigateToPage(plan)}
+                    onClick={() =>
+                      router.push(`/subscriptions/edit/${plan._id}`)
+                    }
                   />
                 </div>
               </div>

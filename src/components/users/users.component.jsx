@@ -2,8 +2,8 @@
 
 import React from 'react';
 import useUsers from './use-users.hook';
-import CustomTable from '@/common/components/custom-table/custom-table.component';
-import CustomSearchField from '@/common/components/custom-search-field/custom-search-field.component';
+import { CustomTable } from '@/common/components/custom-table/custom-table.component';
+import { CustomSearchField } from '@/common/components/custom-search-field/custom-search-field.component';
 
 export default function Users() {
   const {

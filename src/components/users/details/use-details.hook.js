@@ -31,9 +31,9 @@ function useUserDetails() {
 
   return {
     open,
+    router,
     setOpen,
     loading,
-    router,
     data: data?.data,
     handleCompanyStatus
   };

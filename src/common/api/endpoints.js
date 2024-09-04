@@ -5,6 +5,7 @@ export const API_ENDPOINTS = {
   VERIFY_CODE: '/api/admin/verify-token',
   RESET_PASSWORD: '/api/admin/reset-password',
   FORGET_PASSWORD: '/api/admin/forgot-password',
+  CHANGE_PASSWORD: '/api/admin/change-password',
 
   GET_DASHBOARD_DATA: '/api/admin/dashboard',
 
@@ -13,8 +14,13 @@ export const API_ENDPOINTS = {
   COMPANY_STATUS: '/api/admin/company/status',
   COMPANY_DETAILS: '/api/admin/company-details',
 
+  // PROFILE ENDPOINTS
+  VIEW_PROFILE: '/api/admin/profile',
+  UPDATE_PROFILE: '/api/admin/profile',
+
   // SUBSCRIPTIONS ENDPOINTS
   SUBSCRIPTION_EDIT: '/api/admin/subscription-plan',
+  SUBSCRIPTION_UPDATE: '/api/admin/subscription-plan',
   SUBSCRIPTION_DETAILS: '/api/admin/subscription-plan',
   SUBSCRIPTION_LISTING: '/api/admin/subscription-plans',
   SUBSCRIPTION_STATUS: '/api/admin/subscription-status'
